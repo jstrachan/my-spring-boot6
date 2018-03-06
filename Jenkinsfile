@@ -88,7 +88,9 @@ pipeline {
           dir ('./charts/my-spring-boot6') {
             container('maven') {
 
-              // release the helm chart
+              sh "jx version"
+  
+             // release the helm chart
               sh 'make release'
 
               // promote through all 'Auto' promotion Environments

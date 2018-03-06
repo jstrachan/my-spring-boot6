@@ -56,6 +56,8 @@ pipeline {
             // until we switch to the new kubernetes / jenkins credential implementation use git credentials store
             sh "git config --global credential.helper store"
 
+	    sh "jx version"
+
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
@@ -86,10 +88,7 @@ pipeline {
         }
         steps {
           dir ('./charts/my-spring-boot6') {
-            container('maven') {
-
-              sh "jx version"
-  
+            container('maven') {  
              // release the helm chart
               sh 'make release'
 

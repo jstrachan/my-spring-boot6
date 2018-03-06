@@ -28,6 +28,7 @@ pipeline {
         }
         steps {
           container('maven') {
+            sh "jx version"
             sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
             sh "mvn install"
             sh "docker build -f Dockerfile.release -t $JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:$PREVIEW_VERSION ."
@@ -54,6 +55,8 @@ pipeline {
 
             // until we switch to the new kubernetes / jenkins credential implementation use git credentials store
             sh "git config --global credential.helper store"
+
+	    sh "jx version"
 
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
@@ -85,9 +88,8 @@ pipeline {
         }
         steps {
           dir ('./charts/my-spring-boot6') {
-            container('maven') {
-
-              // release the helm chart
+            container('maven') {  
+             // release the helm chart
               sh 'make release'
 
               // promote through all 'Auto' promotion Environments

@@ -1,0 +1,27 @@
+apiVersion: jenkins.io/v1
+kind: Release
+metadata:
+  creationTimestamp: 2018-03-07T16:45:08Z
+  deletionTimestamp: null
+  name: '{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}'
+  resourceVersion: "1"
+spec:
+  commits:
+  - author:
+      creationTimestamp: 2018-03-07T15:17:20Z
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    branch: master
+    committer:
+      creationTimestamp: 2018-03-07T15:17:20Z
+      email: jenkins-x@googlegroups.com
+      name: jenkins-x-bot
+    message: |
+      release 0.0.17
+    sha: 801f2140668fe1aeb5eba4d6e6be820a8e3c5941
+  gitCloneUrl: https://github.com/jstrachan/my-spring-boot6.git
+  gitHttpUrl: https://github.com/jstrachan/my-spring-boot6
+  name: '{{ .Chart.Name }}'
+  releaseNotesURL: https://github.com/jstrachan/my-spring-boot6/releases/tag/0.0.17
+  version: '{{ .Chart.Version }}'
+status: {}

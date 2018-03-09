@@ -1,0 +1,59 @@
+apiVersion: jenkins.io/v1
+kind: PipelineActivity
+metadata:
+  name: jstrachan-demo-cdx2-master-1
+spec:
+  build: "5"
+  buildLogsUrl: http://jenkins.jx.35.230.150.28.nip.io/job/jstrachan/job/demo-cdx2/job/master/5/console
+  buildUrl: http://jenkins.jx.35.230.150.28.nip.io/job/jstrachan/job/demo-cdx2/job/master/5/
+  gitOwner: jstrachan
+  gitRepository: demo-cdx2
+  gitUrl: https://github.com/jstrachan/demo-cdx2.git
+  pipeline: jstrachan/demo-cdx2/master
+  steps:
+  - kind: Stage
+    stage:
+      completedTimestamp: 2018-03-01T15:15:41Z
+      name: Release
+      startedTimestamp: 2018-03-01T15:14:41Z
+      status: Succeeded
+  - kind: Promote
+    promote:
+      completedTimestamp: 2018-03-01T15:19:11Z
+      environment: staging
+      pullRequest:
+        completedTimestamp: 2018-03-01T15:18:50Z
+        mergeCommitSHA: d5d744610492443aeac438b1d8343b7e15e0a42e
+        pullRequestURL: https://github.com/jstrachan/environment-jstrachan-test22-staging/pull/8
+        startedTimestamp: 2018-03-01T15:15:41Z
+        status: Succeeded
+      startedTimestamp: 2018-03-01T15:15:41Z
+      status: Succeeded
+      update:
+        completedTimestamp: 2018-03-01T15:19:11Z
+        startedTimestamp: 2018-03-01T15:18:50Z
+        status: Succeeded
+        statuses:
+        - status: success
+          url: http://jenkins.jx.35.230.150.28.nip.io/job/jstrachan/job/environment-jstrachan-test22-staging/job/master/9/display/redirect
+  - kind: Promote
+    promote:
+      completedTimestamp: 2018-03-01T15:33:31Z
+      environment: production
+      pullRequest:
+        completedTimestamp: 2018-03-01T15:33:10Z
+        mergeCommitSHA: 9d0c9462ff2983b15cc3fbc0fab8e679d856c528
+        pullRequestURL: https://github.com/jstrachan/environment-jstrachan-test22-production/pull/7
+        startedTimestamp: 2018-03-01T15:31:04Z
+        status: Succeeded
+      startedTimestamp: 2018-03-01T15:31:04Z
+      status: Succeeded
+      update:
+        completedTimestamp: 2018-03-01T15:33:31Z
+        startedTimestamp: 2018-03-01T15:33:10Z
+        status: Succeeded
+        statuses:
+        - status: success
+          url: http://jenkins.jx.35.230.150.28.nip.io/job/jstrachan/job/environment-jstrachan-test22-production/job/master/8/display/redirect
+  version: 0.0.1
+status: {}

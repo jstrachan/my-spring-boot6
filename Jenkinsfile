@@ -56,7 +56,7 @@ pipeline {
             // until we switch to the new kubernetes / jenkins credential implementation use git credentials store
             sh "git config --global credential.helper store"
 
-	    sh "jx version"
+	         sh "jx version"
 
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
@@ -71,7 +71,7 @@ pipeline {
 
           container('maven') {
             sh 'mvn clean deploy'
-            sh "skaffold -f scaffold.yaml"
+            sh "skaffold run -f scaffold.yaml -t \$(cat VERSION)"
 /*
             sh "docker build -f Dockerfile.release -t $JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:\$(cat VERSION) ."
             sh "docker push $JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:\$(cat VERSION)"

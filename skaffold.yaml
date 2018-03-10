@@ -2,7 +2,7 @@ apiVersion: skaffold/v1
 kind: Config
 build:
   artifacts:
-  - imageName: jenkins-x-docker-registry:5000/jenkinsx/my-spring-boot6
+  - imageName: $JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/jenkinsx/my-spring-boot6
     workspace: .
     dockerfilePath: Dockerfile.release
   local: {}

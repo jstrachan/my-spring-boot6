@@ -6,3 +6,6 @@ build:
     workspace: .
     dockerfilePath: Dockerfile.release
   local: {}
+deploy:
+  kubectl:
+    manifests:
